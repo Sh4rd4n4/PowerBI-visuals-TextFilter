@@ -68,20 +68,27 @@ div {
     cursor: pointer;
 }
 
+.text-filter-search button.search-button,
+.text-filter-search .clear-button {
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    transition: color .1s, background-color .1s;
+}
+
 .text-filter-search button.search-button {
     position: absolute;
-    top: 0;
-    margin: 2px 1px 1px;
-    padding: 9px;
-    transition: color .1s, background-color .1s;
-    border: 0;
+    top: 1px;
+    display: flex;
+    margin: 0;
 }
 
 .text-filter-search .clear-button {
-    border: 0;
     background-color: white;
-    display: inline-block;
-    transition: color .1s, background-color .1s;
+    display: inline-flex;
+    vertical-align: top;
     outline: none;
 }
 

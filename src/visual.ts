@@ -42,9 +42,7 @@ import { TextFilterSettingsModel } from "./settings";
 import { FormattingSettingsService } from "powerbi-visuals-utils-formattingmodel";
 
 const pxToPt = 0.75,
-  fontPxAdjSml = 20,
-  fontPxAdjStd = 24,
-  fontPxAdjLrg = 26;
+  fontPxAdjStd = 24;
 
 
 export class Visual implements IVisual {
@@ -184,9 +182,7 @@ export class Visual implements IVisual {
     const
       textBox = this.formattingSettings?.textBox,
       fontSize = textBox.font.fontSize.value,
-      fontScaleSml = Math.floor((fontSize / pxToPt) + fontPxAdjSml),
-      fontScaleStd = Math.floor((fontSize / pxToPt) + fontPxAdjStd),
-      fontScaleLrg = Math.floor((fontSize / pxToPt) + fontPxAdjLrg);
+      fontScaleStd = Math.floor((fontSize / pxToPt) + fontPxAdjStd);
     this.searchUi
       .style('height', `${fontScaleStd}px`)
       .style('font-size', `${fontSize}pt`)
@@ -197,10 +193,11 @@ export class Visual implements IVisual {
       .style('padding-right', `${fontScaleStd}px`)
       .style('border-style', textBox.enableBorder.value && 'solid' || 'none')
       .style('border-color', textBox.borderColor.value.value);
+    // sits inside the input's 1px border, flush against its right edge
     this.searchButton
-      .style('right', `${fontScaleLrg}px`)
-      .style('width', `${fontScaleSml}px`)
-      .style('height', `${fontScaleSml}px`)
+      .style('right', `${fontScaleStd + 1}px`)
+      .style('width', `${fontScaleStd - 2}px`)
+      .style('height', `${fontScaleStd - 2}px`)
       .style('font-size', `${fontSize}pt`);
     this.clearButton
       .style('width', `${fontScaleStd}px`)
